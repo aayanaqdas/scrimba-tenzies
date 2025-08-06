@@ -5,9 +5,25 @@ import { nanoid } from "nanoid";
 export default function App() {
   const [dice, setDice] = useState(genAllNewDice());
 
+  const gameWon = dice.every((obj) => obj.value === dice[0].value && obj.isHeld);
+
   function genAllNewDice() {
     const numArray = new Array(10).fill(0).map(() => Math.ceil(Math.random() * 6));
     return numArray.map((num) => ({ value: num, isHeld: false, id: nanoid() }));
+  }
+
+  function rollDice() {
+    setDice((oldDice) =>
+      oldDice.map((die) => (die.isHeld ? die : { ...die, value: Math.ceil(Math.random() * 6) }))
+    );
+  }
+
+  function hold(id) {
+    setDice((prev) =>
+      prev.map((item) => {
+        return item.id === id ? { ...item, isHeld: !item.isHeld } : item;
+      })
+    );
   }
 
   const diceEl = dice.map((dieObj) => {
@@ -22,19 +38,16 @@ export default function App() {
     );
   });
 
-  function hold(id) {
-    setDice((prev) =>
-      prev.map((item) => {
-        return item.id === id ? { ...item, isHeld: !item.isHeld } : item;
-      })
-    );
-  }
-
   return (
     <main>
+      <h1 className="title">Tenzies</h1>
+      <p className="instructions">
+        Roll until all dice are the same. Click each die to freeze it at its current value between
+        rolls.
+      </p>
       <div className="die-container">{diceEl}</div>
-      <button className="roll-btn" onClick={() => setDice(genAllNewDice())}>
-        Roll
+      <button className="roll-btn" onClick={rollDice}>
+        {gameWon ? "New game" : "Roll"}
       </button>
     </main>
   );
