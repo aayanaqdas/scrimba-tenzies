@@ -1,0 +1,26 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+main {
+  background-color: #0b2434;
+  width: 360px;
+  height: 379px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+main > .inner-element {
+  background-color: #f5f5f5;
+  width: 320px;
+  height: 320px;
+}
