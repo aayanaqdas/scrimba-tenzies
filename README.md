@@ -17,11 +17,11 @@ This is a Tenzies game built with React, inspired by everything I learned from S
 
 2. **Install dependencies:**
    ```bash
-Npm install
+    Npm install
 
 3. **Start dev server (with vite):**
    ```bash
-  Npm run dev
+    Npm run dev
 
 
-4. ** Open your browser:Visit http://localhost:5173 to play the game.**
+4. **Open your browser: Visit http://localhost:5173 to play the game.**
